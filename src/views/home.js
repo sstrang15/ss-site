@@ -1,13 +1,13 @@
-export function Home(state) {
+export function Home() {
   return `
-    <main>
-      <h1>Stephen Systems</h1>
+    <h1>ss-site</h1>
 
-      <p>Count: ${state.count}</p>
+    <p>
+      Analytics, systems, development, and digital projects.
+    </p>
 
-      <button id="increment">
-        Increment
-      </button>
-    </main>
+    <p>
+      Building tools, exploring ideas, and creating useful things.
+    </p>
   `
 }
