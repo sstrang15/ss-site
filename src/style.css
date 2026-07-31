@@ -1,64 +1,362 @@
-body { 
-  margin: 0;
+* {
+    box-sizing: border-box;
 }
 
-main { 
+body {
+
+    /* Layout */
+    display: block;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Border */
+    border: none;
+    /* border-radius: */
+
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
 }
 
-section {
-  padding: 4rem 2rem;
+#app {
+
+    /* Layout */
+    display: block;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Border */
+    border: none;
+    /* border-radius: */
+
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
 }
 
-h1 { 
-  margin-top: 0;
+.site-shell {
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Border */
+    border: none;
+    /* border-radius: */
+
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
 }
 
-h2 { 
-  margin-top: 0;
+.site-header {
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+
+    /* Spacing */
+    margin: 0;
+    padding: 1rem;
+
+    /* Border */
+    border: none;
+    /* border-radius: */
+
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
 }
 
-p { }
+.page-layout {
 
-#story {
-  position: relative;
+    /* Layout */
+    display: grid;
+    grid-template-columns: 220px 1fr 220px;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+
+    /* Border */
+    border: none;
+    /* border-radius: */
+
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
 }
 
-#story .content {
-  position: relative;
-  z-index: 1;
+.left-sidebar {
 
-  max-width: 700px;
-  margin: 0 auto;
+    /* Layout */
+    display: block;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    max-height: none;
 
-  color: white;
+    /* Spacing */
+    margin: 0;
+    padding: 1rem;
+
+    /* Border */
+    border-top: none;
+    border-right: 1px solid #ccc;
+    border-bottom: none;
+    border-left: none;
+    /* border-radius: */
+
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
 }
 
-#story .background {
-  position: absolute;
-  inset: 0;
+.main-content {
 
-  background: #111;
+    /* Layout */
+    display: block;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+
+    /* Spacing */
+    margin: 0;
+    padding: 1rem;
+
+    /* Border */
+    border: none;
+    /* border-radius: */
+
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
 }
 
-#hero { 
-  min-height: 50vh;
-}
+.right-sidebar {
 
-#work { 
-  background-image;
-  background-attachment: fixed;
-  background: #f5f5f5;
-}
+    /* Layout */
+    display: block;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+    max-height: none;
 
-#services { 
-  background: #fafafa;
-}
+    /* Spacing */
+    margin: 0;
+    padding: 1rem;
 
-#writing {
-  background: #f0f0f0;
-}
+    /* Border */
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: 1px solid #ccc;
+    /* border-radius: */
 
-#contact {
-  background: #eaeaea;
-}
+    /* Appearance */
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
 
+    /* Typography */
+    /* font-family: */
+    /* font-size: */
+    /* font-weight: */
+    /* line-height: */
+    /* text-align: */
+
+    /* Positioning */
+    position: static;
+    /* top: */
+    /* right: */
+    /* bottom: */
+    /* left: */
+
+    /* Behavior */
+    overflow: visible;
+    cursor: auto;
+    z-index: auto;
+}
