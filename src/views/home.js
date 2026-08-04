@@ -1,40 +1,84 @@
-import { renderHeader } from "../components/header.js"
+import { renderHeader } from "../components/header.js";
+import { renderContent } from "../components/content.js";
+import { renderLeftSidebar } from "../components/leftSidebar.js";
+import { renderRightSidebar } from "../components/rightSidebar.js";
 
-export function renderHome() {
-  return `
-    <div class="site-shell">
 
-      ${renderHeader()}
+/**
+ * Renders the complete home view.
+ *
+ * Input:
+ * {
+ *   header: Object,
+ *   leftSidebar: Object,
+ *   content: Object,
+ *   rightSidebar: Object
+ * }
+ */
 
-      <div class="page-layout">
-        <aside class="left-sidebar">
-          <h2>Sections</h2>
+export function renderHome(website) {
+    const activeTab = website.navigation.tabs.find(
+        tab => tab.id === website.navigation.activeTab
+    );
 
-          <nav aria-label="Page sections">
-            <a href="#overview">Overview</a>
-            <a href="#story">Story</a>
-            <a href="#architecture">Architecture</a>
-            <a href="#repository">Repository</a>
-          </nav>
-        </aside>
+    if (!activeTab) {
+        return `
+            <div class="page-error" role="alert">
+                <strong>Home error:</strong>
+                Active navigation "${website.navigation.activeTab}" was not found.
+            </div>
+        `;
+    }
 
-        <main class="main-content">
-          <section id="overview">
-            <h2>Overview</h2>
-            <p>Main page content will appear here.</p>
-          </section>
-        </main>
+    const activePage = website.pages.find(
+        page => page.id === activeTab.selectedPageId
+    );
 
-        <aside class="right-sidebar">
-          <h2>Projects</h2>
+    if (!activePage) {
+        return `
+            <div class="page-error" role="alert">
+                <strong>Home error:</strong>
+                Selected page "${activeTab.selectedPageId}" was not found.
+            </div>
+        `;
+    }
 
-          <nav aria-label="Project navigation">
-            <a href="#music-dna">Music DNA</a>
-            <a href="#marketscope">MarketScope</a>
-            <a href="#resume">Resume</a>
-          </nav>
-        </aside>
-      </div>
-    </div>
-  `;
+    const rightSidebar = {
+        title: activeTab.title,
+
+        items: activeTab.pageIds.map(pageId => {
+            const page = website.pages.find(
+                page => page.id === pageId
+            );
+
+            return {
+                id: page.id,
+                title: page.title,
+                selected: page.id === activeTab.selectedPageId
+            };
+        })
+    };
+
+    const leftSidebar = {
+        title: "Sections",
+        sections: activePage.sections
+    };
+
+    return `
+        <div class="site-shell">
+
+            ${renderHeader()}
+
+            <div class="page-layout">
+
+                ${renderLeftSidebar(leftSidebar)}
+
+                ${renderContent(activePage)}
+
+                ${renderRightSidebar(rightSidebar)}
+
+            </div>
+
+        </div>
+    `;
 }

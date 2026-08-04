@@ -1,22 +1,47 @@
 export function renderHeader() {
+
+    const contact = [
+        "Email",
+        "LinkedIn",
+        "GitHub"
+    ];
+
+    const tabs = [
+        "Home",
+        "Projects",
+        "Writing",
+        "Contact"
+    ];
+
+    const contactHtml = contact
+        .map(item => `
+            <span class="site-contact__item">
+                ${item}
+            </span>
+        `)
+        .join("");
+
+    const navigationHtml = tabs
+        .map(item => `
+        <button type="button" class="top-navigation__tab">
+            ${item}
+        </button>
+        `)
+        .join("");
+
     return `
         <header class="site-header">
 
             <div class="site-brand">
-                <h1 class="site-title">
-                    Stephen Strang
-                </h1>
+                ...
+            </div>
 
-                <p class="site-subtitle">
-                    Data, Strategy, Technology, Creative Work
-                </p>
+            <div class="site-contact">
+                ${contactHtml}
             </div>
 
             <nav class="top-navigation">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#writing">Writing</a>
-                <a href="#contact">Contact</a>
+                ${navigationHtml}
             </nav>
 
         </header>
