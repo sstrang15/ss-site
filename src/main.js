@@ -4,15 +4,31 @@ import { renderHome } from "./views/home.js";
 
 const website = {
     header: {
-        brand: {
-            title: "Stephen Strang",
-            subtitle: "Data, Strategy, Technology, Creative Work"
-        },
+        title: "ss_site",
+
+        subtitle: "data • analytics • technology",
 
         contact: [
-            "Email",
-            "LinkedIn",
-            "GitHub"
+            {
+                id: "mail",
+                title: "mail",
+                value: "strangstep11@gmail.com",
+                href: "mailto:strangstep11@gmail.com"
+            },
+
+            {
+                id: "git",
+                title: "git",
+                value: "github.com/sstrang15",
+                href: "https://github.com/sstrang15"
+            },
+
+            {
+                id: "linkedin",
+                title: "linkedin",
+                value: "linkedin.com/in/ss_site",
+                href: "https://linkedin.com/in/stephenecon"
+            }
         ]
     },
 
@@ -21,15 +37,8 @@ const website = {
 
         tabs: [
             {
-                id: "home",
-                title: "Home",
-                pageIds: [],
-                selectedPageId: null
-            },
-
-            {
                 id: "projects",
-                title: "Projects",
+                title: "projects",
 
                 pageIds: [
                     "music-dna",
@@ -40,20 +49,25 @@ const website = {
             },
 
             {
-                id: "writing",
-                title: "Writing",
+                id: "coding",
+                title: "coding",
+
                 pageIds: [],
+
                 selectedPageId: null
             },
 
             {
-                id: "contact",
-                title: "Contact",
+                id: "writing",
+                title: "writing",
+
                 pageIds: [],
+
                 selectedPageId: null
             }
         ]
     },
+
 
     pages: [
         {

@@ -67,7 +67,7 @@ export function renderHome(website) {
     return `
         <div class="site-shell">
 
-            ${renderHeader()}
+            ${renderHeader(website)}
 
             <div class="page-layout">
 
