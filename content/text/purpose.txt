@@ -1,0 +1,5 @@
+Music DNA began as an exploration of how listening behavior could be represented as structured data rather than playlists or recommendations alone. The project processes Spotify listening history, transforms it into a consistent analytical model, and explores patterns through clustering, statistics, and interactive visualizations.
+
+The long-term objective is to build a system that explains musical identity through measurable characteristics. Instead of treating songs as isolated tracks, Music DNA organizes them into a broader framework that reveals relationships between artists, genres, moods, and listening habits over time.
+
+This project also serves as a foundation for experimenting with data engineering, software architecture, and user interface design. Every stage of the pipeline—from data acquisition to visualization—is designed to be modular, allowing individual components to evolve independently while contributing to a unified analytical platform.

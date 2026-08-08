@@ -7,6 +7,26 @@ import {
     elements
 } from "./definitions.js";
 
+
+const textFiles = import.meta.glob(
+    "../content/text/*.txt",
+    {
+        query: "?raw",
+        import: "default",
+        eager: true
+    }
+);
+
+const imageFiles = import.meta.glob(
+    "../content/images/*.{png,jpg,jpeg,webp,svg}",
+    {
+        eager: true,
+        query: "?url",
+        import: "default"
+    }
+);
+
+
 /* =========================================================
    PARENT FUNCTION
    ========================================================= */
@@ -161,15 +181,10 @@ function assemblePages(pages, sections, elements) {
 
             description: page.description,
 
-            sections: assembleSections(
-                pageSections,
-                elements
-            )
-
+            sections: assembleSections(pageSections,elements)
         };
 
         assembledPages.push(assembledPage);
-
     }
 
     return assembledPages;
@@ -215,6 +230,10 @@ function assembleSections(sections, elements) {
  * Assembles every element belonging
  * to a section.
  */
+/**
+ * Assembles every element belonging
+ * to a section.
+ */
 function assembleElements(elements) {
 
     const assembledElements = [];
@@ -222,14 +241,22 @@ function assembleElements(elements) {
     for (const element of elements) {
 
         const assembledElement = {
-
             id: element.id,
-
             type: element.type,
-
             heading: element.heading
-
         };
+
+        if (element.type === "text") {
+            assembledElement.body = acquireText(element.content);
+        }
+
+        if (element.type === "image") {
+            assembledElement.src = acquireImage(element.content);
+        }
+
+        if (element.backgroundImage) {
+            assembledElement.backgroundImage = acquireImage(element.backgroundImage);
+        }
 
         assembledElements.push(assembledElement);
 
@@ -239,6 +266,60 @@ function assembleElements(elements) {
 
 }
 
+
+/* =========================================================
+   CONTENT ACQUISITION
+   ========================================================= */
+
+
+/**
+ * Acquires text content by id.
+ */
+function acquireText(elementId) {
+
+    const path = `../content/text/${elementId}.txt`;
+
+    const text = textFiles[path];
+
+    if (!text) {
+        throw new Error(`Text file "${elementId}.txt" was not found.`);
+    }
+
+    const body = text.trim().split(/\n\s*\n/);
+
+    return body;
+}
+
+
+/**
+ * Acquires an image by id.
+ */
+function acquireImage(imageId) {
+
+    const extensions = [
+        "png",
+        "jpg",
+        "jpeg",
+        "webp",
+        "svg"
+    ];
+
+    for (const extension of extensions) {
+
+        const path = `../content/images/${imageId}.${extension}`;
+
+        const image = imageFiles[path];
+
+        if (image) {
+            return image;
+        }
+    }
+
+    throw new Error(
+        `Image "${imageId}" was not found.`
+    );
+
+}
 
 /* =========================================================
    UTILITY FUNCTIONS
@@ -257,7 +338,6 @@ function getPageSections(page, sections) {
         if (section.page === page.id) {
             pageSections.push(section);
         }
-
     }
 
     return pageSections;
@@ -277,9 +357,9 @@ function getSectionElements(section, elements) {
         if (element.section === section.id) {
             sectionElements.push(element);
         }
-
     }
 
     return sectionElements;
 
 }
+

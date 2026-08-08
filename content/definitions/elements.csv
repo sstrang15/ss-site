@@ -1,2 +1,3 @@
-id,section,type,heading,content
-purpose,overview,text,Purpose,text/music-dna/purpose.txt
+id,section,type,heading,content,backgroundImage
+purpose,overview,text,Purpose,purpose
+hero,overview,image,clearly data,image1

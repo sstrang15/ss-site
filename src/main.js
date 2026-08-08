@@ -12,4 +12,6 @@ if (!app) {
     throw new Error("Could not find the #app element.");
 }
 
+console.log(site)
+
 app.innerHTML = renderHome(site);

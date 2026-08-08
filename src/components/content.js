@@ -249,13 +249,13 @@ function renderElement(element) {
  *     id: String,
  *     type: "text",
  *     heading: String,
- *     paragraphs: Array<String>,
+ *     body: Array<String>,
  *     layout: Object,
  *     behavior: Object
  * }
  */
 function renderTextElement(element) {
-    if (!Array.isArray(element.paragraphs)) {
+    if (!Array.isArray(element.body)) {
         return renderError(
             `Text element "${element.id || element.heading}" requires a paragraphs array.`
         );
@@ -265,14 +265,21 @@ function renderTextElement(element) {
         ? `<h3>${element.heading}</h3>`
         : "";
 
-    const paragraphsHtml = element.paragraphs
+    const bodyHtml = element.body
         .map(paragraph => `<p>${paragraph}</p>`)
         .join("");
 
+    const background = element.backgroundImage
+        ? `background-image: url('${element.backgroundImage}');`
+        : "";
+
     return `
-        <div class="text">
+        <div 
+            class="text"
+            style="${background}"
+        >
             ${headingHtml}
-            ${paragraphsHtml}
+            ${bodyHtml}
         </div>
     `;
 }
@@ -296,15 +303,10 @@ function renderTextElement(element) {
  * }
  */
 function renderImageElement(element) {
+
     if (!element.src) {
         return renderError(
-            `Image element "${element.id || element.title}" requires a src.`
-        );
-    }
-
-    if (!element.alt) {
-        return renderError(
-            `Image element "${element.id || element.title}" requires alt text.`
+            `Image element "${element.id || element.heading}" requires a src.`
         );
     }
 
@@ -316,12 +318,12 @@ function renderImageElement(element) {
         <figure class="image">
             <img
                 src="${element.src}"
-                alt="${element.alt}"
             />
 
             ${captionHtml}
         </figure>
     `;
+
 }
 
 

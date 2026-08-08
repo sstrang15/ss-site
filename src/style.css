@@ -450,3 +450,10 @@ body {
     cursor: auto;
     z-index: auto;
 }
+
+.text {
+    background-image: ...;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
