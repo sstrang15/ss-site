@@ -391,16 +391,23 @@ function renderCodeElement(element) {
         ? `<h3>${element.title}</h3>`
         : "";
 
-    const languageAttribute = element.language
-        ? `data-language="${createName(element.language)}"`
-        : "";
+    const languageClass = element.language
+        ? `language-${createName(element.language)}`
+        : "language-javascript";
+
+    const escapedCode = element.code
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
 
     return `
-        <div class="code-example">
+        <div class="code">
             ${titleHtml}
 
-            <pre>
-                <code ${languageAttribute}>${element.code}</code>
+            <pre class="${languageClass}">
+                <code class="${languageClass}">
+                    ${escapedCode}
+                </code>
             </pre>
         </div>
     `;

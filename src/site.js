@@ -26,6 +26,14 @@ const imageFiles = import.meta.glob(
     }
 );
 
+const codeFiles = import.meta.glob(
+    "../content/code/*.js",
+    {
+        query: "?raw",
+        import: "default",
+        eager: true
+    }
+);
 
 /* =========================================================
    PARENT FUNCTION
@@ -254,6 +262,10 @@ function assembleElements(elements) {
             assembledElement.src = acquireImage(element.content);
         }
 
+        if (element.type === "code") {
+            assembledElement.code = acquireCode(element.content);
+        }
+        
         if (element.backgroundImage) {
             assembledElement.backgroundImage = acquireImage(element.backgroundImage);
         }
@@ -318,8 +330,27 @@ function acquireImage(imageId) {
     throw new Error(
         `Image "${imageId}" was not found.`
     );
-
 }
+
+/**
+ * Acquires code content by id.
+ */
+function acquireCode(elementId) {
+
+    const path = `../content/code/${elementId}.js`;
+
+    const code = codeFiles[path];
+
+    if (!code) {
+        throw new Error(
+            `Code file "${elementId}.js" was not found.`
+        );
+    }
+
+    return code.trim();
+}
+
+
 
 /* =========================================================
    UTILITY FUNCTIONS

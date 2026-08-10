@@ -457,3 +457,95 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+/* =========================
+   Code Element
+   ========================= */
+
+.code {
+  height: 320px;
+  overflow: auto;
+  padding: 1rem 1.25rem;
+
+  background: #272822;
+  color: #f8f8f2;
+
+  border-radius: 8px;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  white-space: pre;
+  tab-size: 2;
+}
+
+.code::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.code::-webkit-scrollbar-thumb {
+  background: #75715e;
+  border-radius: 6px;
+}
+
+.code::-webkit-scrollbar-track {
+  background: #1e1f1c;
+}
+
+.code .token.comment,
+.code .token.prolog,
+.code .token.doctype,
+.code .token.cdata {
+    color: #75715e;
+}
+
+.code .token.punctuation {
+    color: #f8f8f2;
+}
+
+.code .token.property,
+.code .token.tag,
+.code .token.constant,
+.code .token.symbol,
+.code .token.deleted {
+    color: #f92672;
+}
+
+.code .token.boolean,
+.code .token.number {
+    color: #ae81ff;
+}
+
+.code .token.selector,
+.code .token.attr-name,
+.code .token.string,
+.code .token.char,
+.code .token.builtin,
+.code .token.inserted {
+    color: #e6db74;
+}
+
+.code .token.operator,
+.code .token.entity,
+.code .token.url,
+.code .token.variable {
+    color: #f8f8f2;
+}
+
+.code .token.atrule,
+.code .token.attr-value,
+.code .token.function,
+.code .token.class-name {
+    color: #a6e22e;
+}
+
+.code .token.keyword {
+    color: #f92672;
+}
+
+.code .token.regex,
+.code .token.important {
+    color: #fd971f;
+}

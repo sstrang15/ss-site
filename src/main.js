@@ -1,5 +1,8 @@
 import "./style.css";
 
+import Prism from "prismjs";
+import "prismjs/components/prism-javascript";
+
 import { assembleSite } from "./site.js";
 import { renderHome } from "./views/home.js";
 
@@ -12,6 +15,7 @@ if (!app) {
     throw new Error("Could not find the #app element.");
 }
 
-console.log(site)
+console.log(site);
 
 app.innerHTML = renderHome(site);
+Prism.highlightAll();
