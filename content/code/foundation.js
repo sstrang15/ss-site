@@ -6,7 +6,6 @@
 export function create() {
 
     const repository = acquire();
-
     const site = assemble(repository);
 
     return render(site);

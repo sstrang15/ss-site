@@ -39,14 +39,18 @@ export function renderHeader(website) {
     return `
         <header class="site-header">
 
-            <div class="site-identity">
-                <h1 class="site-title">${header.title}</h1>
-                ${subtitleHtml}
+            <div class="header-content">
+
+                <div class="site-identity">
+                    <h1 class="site-title">${header.title}</h1>
+                    ${subtitleHtml}
+                </div>
+
+                ${renderContact(header.contact)}
+
+                ${renderNavigation(navigation)}
+
             </div>
-
-            ${renderContact(header.contact)}
-
-            ${renderNavigation(navigation)}
 
         </header>
     `;
