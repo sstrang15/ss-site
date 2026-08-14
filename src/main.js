@@ -5,7 +5,12 @@ import "prismjs/components/prism-javascript";
 
 import { assembleSite } from "./site.js";
 import { renderHome } from "./views/home.js";
+import { initializeNavigation } from "./components/header.js";
 
+
+/* =========================================================
+   APPLICATION SETUP
+   ========================================================= */
 
 const site = assembleSite();
 
@@ -17,8 +22,20 @@ if (!app) {
 
 console.log(site);
 
+
+/* =========================================================
+   INITIAL RENDER
+   ========================================================= */
+
 app.innerHTML = renderHome(site);
-Prism.highlightAll();
+
+
+renderApp();
+
+
+/* =========================================================
+   GLOBAL BEHAVIOR
+   ========================================================= */
 
 const header = document.querySelector(".site-header");
 
@@ -31,3 +48,12 @@ window.addEventListener("scroll", () => {
     }
 
 });
+
+
+function renderApp() {
+    app.innerHTML = renderHome(site);
+
+    Prism.highlightAll();
+
+    initializeNavigation(site, renderApp);
+}

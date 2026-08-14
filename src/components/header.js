@@ -211,6 +211,27 @@ function renderNavigationTab(tab, activeTab) {
     `;
 }
 
+export function initializeNavigation(site, renderApp) {
+
+    const navigationTabs = document.querySelectorAll(
+        ".top-navigation-tab"
+    );
+
+    navigationTabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            const tabId = tab.dataset.navigationTab;
+
+            site.navigation.activeTab = tabId;
+            console.log(site.navigation.activeTab);
+
+            renderApp();
+        });
+
+    });
+}
+
 
 /* =========================================================
    SUPPORT FUNCTIONS

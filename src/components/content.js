@@ -404,7 +404,11 @@ function renderCodeElement(element) {
         <div class="code">
             ${titleHtml}
 
-            <pre class="${languageClass}"><code class="${languageClass}">${escapedCode}</code></pre>
+            <pre class="${languageClass}">
+                <code class="${languageClass}">
+                    ${escapedCode}
+                </code>
+            </pre>
         </div>
     `;
 }
