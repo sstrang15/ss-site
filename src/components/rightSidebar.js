@@ -94,20 +94,29 @@ function renderNavigationItem(item) {
 }
 
 export function initializePageNavigation(site, renderApp) {
-    // find page buttons
+    // locates the divs with the pageId i am needing are based on class
     const navigationItems = document.querySelectorAll(".right-navigation-item")
     // attach click listeners
     navigationItems.forEach(item => {
-        pageId = item.dataset.navigationItem;
-
+        // add a listener for click for every item
         item.addEventListener("click", () => {
+            // based on the item that was clicked go inside its dataset anf find its id stored under navigationItem 
+            // data-navigation-item=
+            const pageId = item.dataset.navigationItem;
+            // find the active tab object inside the site data
+            const activeTab = site.navigation.tabs.find(
+                tab => tab.id === site.navigation.activeTab
+            );
+
+
+            // change the selectedPageId on that active tab object
+            activeTab.selectedPageId = pageId;
             
+            console.log(activeTab.selectedPageId)
+
+            renderApp()
         })
     })
-
-    // state that needs to change is what page displays 
-    // so it finds the active page (page clicked or a default)
-    // that tells page layout what to render
 
 }
 
