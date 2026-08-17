@@ -6,6 +6,7 @@ import "prismjs/components/prism-javascript";
 import { assembleSite } from "./site.js";
 import { renderHome } from "./views/home.js";
 import { initializeNavigation } from "./components/header.js";
+import { initializePageNavigation } from "./components/rightSidebar.js"
 
 
 /* =========================================================
@@ -26,9 +27,6 @@ console.log(site);
 /* =========================================================
    INITIAL RENDER
    ========================================================= */
-
-app.innerHTML = renderHome(site);
-
 
 renderApp();
 
@@ -56,4 +54,6 @@ function renderApp() {
     Prism.highlightAll();
 
     initializeNavigation(site, renderApp);
+
+    initializePageNavigation(site, renderApp);
 }

@@ -93,6 +93,24 @@ function renderNavigationItem(item) {
     `;
 }
 
+export function initializePageNavigation(site, renderApp) {
+    // find page buttons
+    const navigationItems = document.querySelectorAll(".right-navigation-item")
+    // attach click listeners
+    navigationItems.forEach(item => {
+        pageId = item.dataset.navigationItem;
+
+        item.addEventListener("click", () => {
+            
+        })
+    })
+
+    // state that needs to change is what page displays 
+    // so it finds the active page (page clicked or a default)
+    // that tells page layout what to render
+
+}
+
 
 /* =========================================================
    ERROR AND NAMING FUNCTIONS
