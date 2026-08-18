@@ -27,26 +27,30 @@ export function renderLeftSidebar(sidebar) {
         );
     }
 
-    const sectionsHtml = sidebar.sections
-        .map(section => renderSectionLink(section))
-        .join("");
+    let sectionsHtml = "";
 
-    return `
-        <aside class="left-sidebar">
-            <header class="left-sidebar-header">
-                <h2>${sidebar.title}</h2>
-            </header>
+    for (const section of sidebar.sections) {
+        const sectionLinkHtml = renderSectionLink(section);
 
-            <nav
-                class="section-navigation"
-                aria-label="${sidebar.title}"
-            >
-                ${sectionsHtml}
-            </nav>
-        </aside>
-    `;
+        sectionsHtml += sectionLinkHtml + "\n" + indent(20);
+    }
+
+    sectionsHtml = sectionsHtml.trimEnd();
+
+    const leftSidebarHtml = `${indent(12)}<aside class="left-sidebar">
+                <header class="left-sidebar-header">
+                    <h2>${sidebar.title}</h2>
+                </header>
+                <nav
+                    class="section-navigation"
+                    aria-label="${sidebar.title}"
+                >
+                    ${sectionsHtml}
+                </nav>
+            </aside>`;
+
+    return leftSidebarHtml;
 }
-
 
 /**
  * Renders one section link.
@@ -72,15 +76,15 @@ function renderSectionLink(section) {
         );
     }
 
-    return `
-        <a
-            class="section-navigation-item"
-            href="#${createName(section.id)}"
-            data-section-link="${createName(section.id)}"
-        >
-            ${section.title}
-        </a>
-    `;
+    const sectionLinkHtml = `<a
+                        class="section-navigation-item"
+                        href="#${createName(section.id)}"
+                        data-section-link="${createName(section.id)}"
+                    >
+                    ${section.title}
+                    </a>`;
+
+    return sectionLinkHtml;
 }
 
 
@@ -114,4 +118,8 @@ function createName(value) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
+}
+
+export function indent(spaces) {
+    return " ".repeat(spaces);
 }

@@ -66,29 +66,36 @@ export function renderContent(page) {
 
     const pageName = createName(page.title);
 
-    const descriptionHtml = page.description
-        ? `<p class="page-description">${page.description}</p>`
-        : "";
+    let descriptionHtml = "";
 
-    const sectionsHtml = page.sections
-        .map(section => renderSection(section))
-        .join("");
+    if (page.description) {
+        descriptionHtml = `<p class="page-description">${page.description}</p>`;
+    }
 
-    return `
-        <main
-            class="page"
-            data-page="${pageName}"
-        >
-            <header class="page-header">
-                <h1>${page.title}</h1>
-                ${descriptionHtml}
-            </header>
+    let sectionsHtml = "";
 
-            <div class="page-sections">
-                ${sectionsHtml}
-            </div>
-        </main>
-    `;
+    for (const section of page.sections) {
+        const sectionHtml = renderSection(section);
+
+        sectionsHtml += sectionHtml + "\n" + indent(20);
+    }
+
+    sectionsHtml = sectionsHtml.trimEnd();
+
+    const contentHtml = `${indent(12)}<main
+                class="page"
+                data-page="${pageName}"
+            >
+                <header class="page-header">
+                    <h1>${page.title}</h1>
+                    ${descriptionHtml}
+                </header>
+                <div class="page-sections">
+                    ${sectionsHtml}
+                </div>
+            </main>`;
+
+    return contentHtml;
 }
 
 
@@ -126,26 +133,31 @@ function renderSection(section) {
         ? `data-variant="${createName(section.variant)}"`
         : "";
 
-    const elementsHtml = section.elements
-        .map(element => renderElement(element))
-        .join("");
+    let elementsHtml = "";
 
-    return `
-        <section
-            id="${createName(section.id)}"
-            class="section"
-            data-section="${createName(section.id)}"
-            ${variantAttribute}
-        >
-            <header class="section-header">
-                <h2>${section.title}</h2>
-            </header>
+    for (const element of section.elements) {
+        const elementHtml = renderElement(element);
 
-            <div class="section-elements">
-                ${elementsHtml}
-            </div>
-        </section>
-    `;
+        elementsHtml += elementHtml + "\n" + indent(28);
+    }
+
+    elementsHtml = elementsHtml.trimEnd();
+
+    const sectionHtml = `<section
+                        id="${createName(section.id)}"
+                        class="section"
+                        data-section="${createName(section.id)}"
+                        ${variantAttribute}
+                    >
+                        <header class="section-header">
+                            <h2>${section.title}</h2>
+                        </header>
+                        <div class="section-elements">
+                            ${elementsHtml}
+                        </div>
+                    </section>`;
+
+    return sectionHtml;
 }
 
 
@@ -181,8 +193,9 @@ function renderElement(element) {
 
     const layoutAttributes = renderLayoutAttributes(element.layout);
     const behaviorAttributes = renderBehaviorAttributes(element.behavior);
+    const backgroundHtml = renderBackground(element.layout?.background);
 
-    let elementHtml;
+    let elementHtml = "";
 
     switch (element.type) {
         case "text":
@@ -215,21 +228,20 @@ function renderElement(element) {
             );
     }
 
-    return `
-        <div
-            class="element"
-            data-element="${elementName}"
-            data-type="${createName(element.type)}"
-            ${layoutAttributes}
-            ${behaviorAttributes}
-        >
-            ${renderBackground(element.layout?.background)}
+    const renderedElementHtml = `<div
+                                class="element"
+                                data-element="${elementName}"
+                                data-type="${createName(element.type)}"
+                                ${layoutAttributes}
+                                ${behaviorAttributes}
+                            >
+                                ${backgroundHtml}
+                                <div class="element-content">
+                                    ${elementHtml}
+                                </div>\n
+                            </div>`;
 
-            <div class="element-content">
-                ${elementHtml}
-            </div>
-        </div>
-    `;
+    return renderedElementHtml;
 }
 
 
@@ -261,27 +273,35 @@ function renderTextElement(element) {
         );
     }
 
-    const headingHtml = element.heading
-        ? `<h3>${element.heading}</h3>`
-        : "";
+    let headingHtml = "";
 
-    const bodyHtml = element.body
-        .map(paragraph => `<p>${paragraph}</p>`)
-        .join("");
+    if (element.heading) {
+        headingHtml = `<h3>${element.heading}</h3>`;
+    }
+
+    let bodyHtml = "";
+
+    for (const paragraph of element.body) {
+        const paragraphHtml = `<p>${paragraph}</p>`;
+
+        bodyHtml += paragraphHtml + "\n" + indent(44);
+    }
+
+    bodyHtml = bodyHtml.trimEnd();
 
     const background = element.backgroundImage
         ? `background-image: url('${element.backgroundImage}');`
         : "";
 
-    return `
-        <div 
-            class="text"
-            style="${background}"
-        >
-            ${headingHtml}
-            ${bodyHtml}
-        </div>
-    `;
+    const textElementHtml = `<div 
+                                        class="text"
+                                        style="${background}"
+                                    >
+                                        ${headingHtml}
+                                        ${bodyHtml}
+                                    </div>`;
+
+    return textElementHtml;
 }
 
 
@@ -303,27 +323,26 @@ function renderTextElement(element) {
  * }
  */
 function renderImageElement(element) {
-
     if (!element.src) {
         return renderError(
             `Image element "${element.id || element.heading}" requires a src.`
         );
     }
 
-    const captionHtml = element.caption
-        ? `<figcaption>${element.caption}</figcaption>`
-        : "";
+    let captionHtml = "";
 
-    return `
-        <figure class="image">
-            <img
-                src="${element.src}"
-            />
+    if (element.caption) {
+        captionHtml = `<figcaption>${element.caption}</figcaption>`;
+    }
 
-            ${captionHtml}
-        </figure>
-    `;
+    const imageElementHtml = `<figure class="image">
+                                        <img
+                                            src="${element.src}"
+                                        />
+                                        ${captionHtml}
+                                    </figure>`;
 
+    return imageElementHtml;
 }
 
 
@@ -387,9 +406,11 @@ function renderCodeElement(element) {
         );
     }
 
-    const titleHtml = element.title
-        ? `<h3>${element.title}</h3>`
-        : "";
+    let titleHtml = "";
+
+    if (element.title) {
+        titleHtml = `<h3>${element.title}</h3>`;
+    }
 
     const languageClass = element.language
         ? `language-${createName(element.language)}`
@@ -400,17 +421,14 @@ function renderCodeElement(element) {
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
-    return `
-        <div class="code">
-            ${titleHtml}
+    const codeElementHtml = `<div class="code">
+                                        ${titleHtml}
+                                        <pre class="${languageClass}">
+<code class="${languageClass}">${escapedCode}</code>
+                                        </pre>
+                                    </div>`;
 
-            <pre class="${languageClass}">
-                <code class="${languageClass}">
-                    ${escapedCode}
-                </code>
-            </pre>
-        </div>
-    `;
+    return codeElementHtml;
 }
 
 
@@ -841,4 +859,17 @@ function createName(value) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
+}
+
+export function indent(spaces) {
+    return " ".repeat(spaces);
+}
+
+function indentHtml(html, spaces) {
+    const indentation = " ".repeat(spaces);
+
+    return html
+        .split("\n")
+        .map(line => indentation + line)
+        .join("\n");
 }

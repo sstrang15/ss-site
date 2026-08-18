@@ -3,9 +3,17 @@
     --text-primary: #171717;
     --text-secondary: #6b6b6b;
     --text-quiet: #9c9c9c;
-    --site-width: 1500px;
-    /*--header-width: 1320px;*/
-    --header-height: 5rem;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -13,114 +21,104 @@ html {
     scroll-behavior: smooth;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 body {
 
-    color: var(--text-primary);
-    background: var(--background);
+    /* Layout */
+    display: block;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
+    /* min-height: */
+    /* max-height: */
 
+    /* Spacing */
+    /* margin: */
+    /* padding: */
+
+    /* Appearance */
+    background-color: var(--background);
+    color: var(--text-primary);
+
+    /* Typography */
     font-family:
-        "Helvetica Neue",
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
         Helvetica,
         Arial,
         sans-serif;
 
-    font-weight: 400;
     font-size: 18px;
-    line-height: 1.55;
-
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
 }
+
+
+/* =========================================================
+   APP
+   ========================================================= */
 
 #app {
 
     /* Layout */
     display: block;
-    width: auto;
-    min-width: 0;
-    max-width: none;
-    height: auto;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
     min-height: 100vh;
-    max-height: none;
+    /* max-height: */
 
     /* Spacing */
-    margin: 0;
-    padding: 0;
-
-    /* Border */
-    border: none;
-    /* border-radius: */
+    /* margin: */
+    /* padding: */
 
     /* Appearance */
-    background-color: transparent;
-    color: inherit;
-    opacity: 1;
-
-    /* Typography */
-    /* font-family: */
-    /* font-size: */
-    /* font-weight: */
-    /* line-height: */
-    /* text-align: */
+    /* background-color: */
+    /* color: */
 
     /* Positioning */
-    position: static;
-    /* top: */
-    /* right: */
-    /* bottom: */
-    /* left: */
+    /* position: */
 
     /* Behavior */
-    overflow: visible;
-    cursor: auto;
-    z-index: auto;
+    /* overflow: */
 }
+
+
+/* =========================================================
+   SITE SHELL
+   ========================================================= */
 
 .site-shell {
 
     /* Layout */
     display: block;
-    min-width: 0;
-    max-width: none;
-    height: auto;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
     min-height: 100vh;
-    max-height: none;
+    /* max-height: */
 
     /* Spacing */
-    margin: 0 auto;
-    padding: 0;
-
-    /* Border */
-    border: none;
-    /* border-radius: */
+    /* margin: */
+    /* padding: */
 
     /* Appearance */
-    background-color: transparent;
-    color: inherit;
-    opacity: 1;
-
-    /* Typography */
-    /* font-family: */
-    /* font-size: */
-    /* font-weight: */
-    /* line-height: */
-    /* text-align: */
+    /* background-color: */
+    /* color: */
 
     /* Positioning */
-    position: static;
-    /* top: */
-    /* right: */
-    /* bottom: */
-    /* left: */
+    /* position: */
 
     /* Behavior */
-    overflow: visible;
-    cursor: auto;
-    z-index: auto;
+    /* overflow: */
 }
+
 
 /* =========================================================
    HEADER
@@ -129,529 +127,630 @@ body {
 .site-header {
 
     /* Layout */
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-
-    grid-template-areas:
-        "identity contact"
-        "navigation navigation";
-
-    align-items: start;
-
+    display: block;
     width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
+    /*min-height: 1rem*/
+    /*max-height: 40rem*/
 
     /* Spacing */
-    margin-left: auto;
-    margin-right: auto;
-
-    padding: 1rem 0 .75rem;
-/**/
-    column-gap: 5rem;
-    row-gap: 0.75rem;
-
-    /* Border */
-    /* border: */
-    /* border-radius: */
+    /* margin: */
+    /* padding: */
 
     /* Appearance */
-    background-color: lightblue;
-    color: inherit;
-    opacity: 1;
-
-    /* Typography */
-    /* font-family: */
-    /* font-size: */
-    /* font-weight: */
-    /* line-height: */
-    /* text-align: */
+     background-color: lightblue; 
+    /* color: */
 
     /* Positioning */
-    position: sticky;
-    top: 0;
-    /* right: */
-    /* bottom: */
-    /* left: */
+     position: sticky;
 
     /* Behavior */
-    overflow: visible;
-    cursor: auto;
-    z-index: 20;
-
-    transition: opacity 0.3s ease;
+    /* overflow: */
 }
 
 .header-content {
 
     /* Layout */
-    display: grid;
-
-    grid-template-columns: minmax(0, 1fr) auto;
-
-    grid-template-areas:
-        "identity contact"
-        "navigation navigation";
-
-    align-items: start;
-
-    width: calc(100% - 12rem);
-    /*max-width: 2000px;*/
+    display: block;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
 
     /* Spacing */
-    margin: 0 auto;
-    padding: 0rem 0 0.75rem;
+    /* margin: */
+    /* padding: */
 
-    column-gap: 5rem;
-    row-gap: 0.75rem;
+    /* Appearance */
+    /* background-color: */
+    /* color: */
+
+    /* Positioning */
+    /* position: */
 }
 
-.site-header.scrolled {
-    opacity: 0.45;
-}
-
-
-.site-header:hover {
-    opacity: 1;
-}
 
 /* =========================================================
    SITE IDENTITY
    ========================================================= */
 
 .site-identity {
-    grid-area: identity;
+
+    /* Layout */
+    display: block;
+    width: 100%;
+
+    /* Spacing */
+    /* margin: */
+    /* padding: */
 }
 
 .site-title {
 
-    margin: 0;
+    /* Layout */
+    display: block;
+    width: 100%;
 
-    font-size: 2.3rem;
-    font-weight: 500;
-    letter-spacing: -0.05em;
+    /* Spacing */
+    /* margin: */
+    /* padding: */
+
+    /* Typography */
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    /* text-align: */
 }
 
 .site-subtitle {
-    margin-top: .7rem 0 0;
 
-    font-size: .95rem;
+    /* Layout */
+    display: block;
+    width: 100%;
+
+    /* Spacing */
+    /* margin: */
+    /* padding: */
+
+    /* Appearance */
     color: var(--text-secondary);
-    letter-spacing: .03em;
+
+    /* Typography */
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
 }
 
-/* =========================================================
+
 /* =========================================================
    CONTACT
    ========================================================= */
 
 .site-contact {
-    grid-area: contact;
 
-    display: flex;
-    flex-direction: column;
+    /* Layout */
+    display: block;
+    width: 100%;
 
-    align-items: flex-start;
-    align-self: start;
-
-    gap: 0.55rem;
+    /* Spacing */
+    /* margin: */
+    /* padding: */
 }
 
 .site-contact-item {
-    display: grid;
 
-    grid-template-columns: 4.25rem auto;
+    /* Layout */
+    display: block;
+    width: 100%;
 
-    align-items: baseline;
-
-    column-gap: 1.25rem;
+    /* Spacing */
+    /* margin: */
+    /* padding: */
 }
 
 .site-contact-title {
     color: var(--text-quiet);
 
-    font-size: 0.82rem;
-    font-weight: 400;
-
-    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
 }
 
 .site-contact-value {
     color: var(--text-secondary);
 
-    font-size: 0.88rem;
-    font-weight: 400;
-
-    letter-spacing: 0.015em;
-
+    font-size: 0.9rem;
+    letter-spacing: -0.005em;
     text-decoration: none;
 }
 
-.site-contact-value:hover {
-    color: var(--text-primary);
-}
 
 /* =========================================================
    TOP NAVIGATION
    ========================================================= */
 
 .top-navigation {
-    grid-area: navigation;
 
+    /* Layout */
     display: flex;
+    width: 100%;
 
-    align-items: center;
+    /* Spacing */
+    /* margin: */
+    /* padding: */
 
-    gap: 3.5rem;
+    /* Flex */
+    flex-direction: row;
+    /* justify-content: */
+    /* align-items: */
+    /* gap: */
 }
 
 .top-navigation-tab {
-    padding: 0;
 
-    border: none;
+    /* Layout */
+    display: block;
+    /* width: */
 
-    background: transparent;
+    /* Spacing */
+    /* margin: */
+    /* padding: */
+
+    /* Appearance */
+    background-color: transparent;
     color: var(--text-secondary);
 
+    /* Typography */
     font-family: inherit;
     font-size: 1rem;
-    font-weight: 450;
-
-    letter-spacing: 0.025em;
-
-    cursor: pointer;
-}
-
-.top-navigation-tab:hover {
-    color: var(--text-primary);
-}
-
-.top-navigation-tab[aria-current="page"] {
-    color: var(--text-primary);
     font-weight: 500;
+    letter-spacing: -0.01em;
+
+    /* Border */
+    border: none;
 }
+
+
+/* =========================================================
+   PAGE LAYOUT
+   ========================================================= */
 
 .page-layout {
 
     /* Layout */
-    display: block;
+    display: grid;
     width: 100%;
-    min-width: 0;
-    max-width: none;
-    height: auto;
-    min-height: 0;
-    max-height: none;
+
+    grid-template-columns:
+        15%
+        70%
+        15%;
+
+    /* min-width: */
+    /* max-width: */
+    /* height: */
+    /* min-height: */
+    /* max-height: */
 
     /* Spacing */
-    margin: 0;
-    padding: 0rem 0 0;
+    /* margin: */
+    /* padding: */
 
-    /* Border */
-    border: none;
-    /* border-radius: */
+    /* Grid */
+    /* grid-template-rows: */
+    /* justify-content: */
+    /* align-items: */
+    gap: 0;
 
     /* Appearance */
-    background-color: transparent;
-    color: inherit;
-    opacity: 1;
-
-    /* Typography */
-    /* font-family: */
-    /* font-size: */
-    /* font-weight: */
-    /* line-height: */
-    /* text-align: */
+    /* background-color: */
+    /* color: */
 
     /* Positioning */
-    position: relative;
-    /* top: */
-    /* right: */
-    /* bottom: */
-    /* left: */
+    /* position: */
 
     /* Behavior */
-    overflow: visible;
-    cursor: auto;
-    z-index: auto;
+    /* overflow: */
 }
 
 
-.page {
-    width: 100%;
-    max-width: none;
-}
+/* =========================================================
+   LEFT SIDEBAR
+   ========================================================= */
 
 .left-sidebar {
 
     /* Layout */
     display: block;
-    width: 280px;
-    min-width: 0;
-    max-width: none;
-    height: auto;
-    min-height: 0;
-    max-height: none;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
 
     /* Spacing */
-    margin: 0;
-    padding: 0.75rem 1rem;
-
-    /* Border */
-    border-top: none;
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
-    border-bottom: none;
-    border-left: none;
-    /* border-radius: */
+    /* margin: */
+    /* padding: */
 
     /* Appearance */
-    background-color: rgba(255, 255, 255, 0.08);
-    color: rgba(0, 0, 0, 0.5);
-    text-decoration: none;
-    opacity: 1;
-
-    /* Typography */
-    /* font-family: */
-    /* font-size: */
-    /* font-weight: */
-    /* line-height: */
-    /* text-align: */
+    /* background-color: */
+    /* color: */
 
     /* Positioning */
-    position: fixed;
-    top: 10rem;
-    /* right: */
-    bottom: 0;
-    left: 0;
+    /* position: */
 
     /* Behavior */
-    overflow-y: auto;
-    cursor: auto;
-    z-index: 10;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.left-sidebar:hover {
-    background-color: rgba(255, 255, 255, 0.18);
-    color: rgba(0, 0, 0, 0.95);
+    /* overflow: */
 }
 
 .left-sidebar h2 {
     font-size: 1rem;
-}
-
-.left-sidebar-item:hover {
-    background: rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    letter-spacing: -0.015em;
 }
 
 .section-navigation-item {
-    font-size: .95rem;
+
+    /* Layout */
     display: block;
-    flex-direction: column;
+    width: 100%;
+
+    /* Spacing */
+    /* margin: */
+    /* padding: */
+
+    /* Typography */
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    /* text-decoration: */
 }
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
 
 .main-content {
 
     /* Layout */
     display: block;
     width: 100%;
-    min-width: 0;
-    max-width: none;
-    height: auto;
-    min-height: 0;
-    max-height: none;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
+    /* min-height: */
+    /* max-height: */
 
     /* Spacing */
-    margin: 0;
-    padding: 1rem 6rem 4rem;
-
-    /* Border */
-    border: none;
-    /* border-radius: */
+    /* margin: */
+    /* padding: */
 
     /* Appearance */
-    background-color: transparent;
-    color: inherit;
-    opacity: 1;
-
-    /* Typography */
-    /* font-family: */
-    /* font-size: */
-    /* font-weight: */
-    /* line-height: */
-    /* text-align: */
+    /* background-color: */
+    /* color: */
 
     /* Positioning */
-    position: relative;
-    /* top: */
-    /* right: */
-    /* bottom: */
-    /* left: */
+    /* position: */
 
     /* Behavior */
-    overflow: visible;
-    cursor: auto;
-    z-index: 1;
+    /* overflow: */
 }
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.page {
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
+
+    /* Spacing */
+    /* margin: */
+    /* padding: */
+
+    /* Appearance */
+    /* background-color: */
+    /* color: */
+}
+
+
+/* =========================================================
+   RIGHT SIDEBAR
+   ========================================================= */
 
 .right-sidebar {
 
     /* Layout */
     display: block;
-    width: 280px;
-    min-width: 0;
-    max-width: none;
-    height: auto;
-    min-height: 0;
-    max-height: none;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
 
     /* Spacing */
-    margin: 0;
+    /* margin: */
+    /* padding: */
+
+    /* Appearance */
+    /* background-color: */
+    /* color: */
+
+    /* Positioning */
+    /* position: */
+
+    /* Behavior */
+    /* overflow: */
+}
+
+
+/* =========================================================
+   TEXT ELEMENT
+   ========================================================= */
+
+.text {
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    /* height: */
+
+    /* Spacing */
+    /* margin: */
+    /* padding: */
+
+    /* Typography */
+    /* font-size: */
+    /* line-height: */
+    /* letter-spacing: */
+}
+
+
+/* =========================================================
+   CODE ELEMENT
+   ========================================================= */
+
+/* =========================================================
+   CODE ELEMENT
+   ========================================================= */
+
+.code {
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    /* min-width: */
+    /* max-width: */
+    /* height: */
+    /* min-height: */
+    /* max-height: */
+
+    /* Spacing */
+    /* margin: */
     padding: 1rem;
+    /* margin-top: */
+    /* margin-right: */
+    /* margin-bottom: */
+    /* margin-left: */
+    /* padding-top: */
+    /* padding-right: */
+    /* padding-bottom: */
+    /* padding-left: */
 
     /* Border */
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-left: 1px solid #ccc;
+    border: 1px solid #d8d8d8;
     /* border-radius: */
 
     /* Appearance */
-    background-color: rgba(255, 255, 255, 0.08);
-    color: rgba(0, 0, 0, 0.5);
-    opacity: 1;
+    background-color: #f5f5f5;
+    color: #222222;
 
     /* Typography */
-    /* font-family: */
-    font-size: .95rem;
-        /* font-weight: */
-    /* line-height: */
-     /*text-align: */
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
 
     /* Positioning */
-    position: fixed;
-    top: 7rem;
-    right: 0;
-    bottom: 0;
-     /*left: */
+    /* position: */
 
     /* Behavior */
-    overflow-y: auto;
-    cursor: auto;
-    z-index: 10;
-
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
-
+    overflow: auto;
 }
 
-.text {
-    background-image: ...;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+
+/* =========================================================
+   DEVELOPMENT MODES
+
+   Add these classes to <body> when needed:
+
+   class="boring-mode"
+   class="boxes-mode"
+   class="boring-mode boxes-mode"
+
+   ========================================================= */
+
+
+/* =========================================================
+   BORING MODE
+
+   Returns the site to a simple, predictable layout.
+   ========================================================= */
+
+/*
+body.boring-mode {
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
 }
 
-/* =========================
-   Code Element
-   ========================= */
 
-.code {
-  height: 320px;
-  overflow: auto;
-  padding: 1rem 1.25rem;
+body.boring-mode .site-header,
+body.boring-mode .header-content,
+body.boring-mode .site-identity,
+body.boring-mode .site-contact,
+body.boring-mode .top-navigation,
+body.boring-mode .page-layout,
+body.boring-mode .left-sidebar,
+body.boring-mode .main-content,
+body.boring-mode .right-sidebar,
+body.boring-mode .page,
+body.boring-mode .text {
 
-  background: #272822;
-  color: #f8f8f2;
-
-  border-radius: 8px;
-
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.9rem;
-  line-height: 1.6;
-
-  tab-size: 2;
-}
-
-.code pre {
     margin: 0;
     padding: 0;
 
-    white-space: pre;
-    font: inherit;
+    background: transparent;
+    color: inherit;
+
+    position: static;
+
+    border: none;
+
+    opacity: 1;
 }
 
-.code code {
-    font: inherit;
+
+body.boring-mode .page-layout {
+
+    display: grid;
+    width: 95vw;
+
+    grid-template-columns:
+        15vw
+        65vw
+        15vw;
+
+    gap: 0;
 }
 
-.code::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+
+body.boring-mode .left-sidebar {
+
+    display: block;
+    width: 15vw;
 }
 
-.code::-webkit-scrollbar-thumb {
-  background: #75715e;
-  border-radius: 6px;
+
+body.boring-mode .main-content {
+
+    display: block;
+    width: 65vw;
 }
 
-.code::-webkit-scrollbar-track {
-  background: #1e1f1c;
+
+body.boring-mode .right-sidebar {
+
+    display: block;
+    width: 15vw;
 }
 
-.code .token.comment,
-.code .token.prolog,
-.code .token.doctype,
-.code .token.cdata {
-    color: #75715e;
+
+body.boring-mode .code {
+
+    display: block;
+    width: 100%;
+
+    padding: 1rem;
+
+    background-color: #f5f5f5;
+    color: #222222;
+
+    border: 1px solid #d8d8d8;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    overflow: auto;
+}
+*/
+
+
+/* =========================================================
+   BOXES MODE
+
+   Shows physical boundaries without changing layout.
+   ========================================================= */
+
+body.boxes-mode {
+    padding: 1rem;
 }
 
-.code .token.punctuation {
-    color: #f8f8f2;
+
+/* Level 0 — outer shells */
+
+body.boxes-mode #app {
+    outline: 4px solid purple;
+    padding: 1rem;
 }
 
-.code .token.property,
-.code .token.tag,
-.code .token.constant,
-.code .token.symbol,
-.code .token.deleted {
-    color: #f92672;
+body.boxes-mode .site-shell {
+    outline: 4px solid darkred;
+    padding: 1rem;
 }
 
-.code .token.boolean,
-.code .token.number {
-    color: #ae81ff;
+
+/* Level 1 — major structural parents */
+
+body.boxes-mode .site-header,
+body.boxes-mode .page-layout {
+    outline: 3px solid red;
+    padding: 1rem;
 }
 
-.code .token.selector,
-.code .token.attr-name,
-.code .token.string,
-.code .token.char,
-.code .token.builtin,
-.code .token.inserted {
-    color: #e6db74;
+
+/* Level 2 — major children */
+
+body.boxes-mode .header-content,
+body.boxes-mode .left-sidebar,
+body.boxes-mode .right-sidebar {
+    outline: 3px solid blue;
+    padding: 1rem;
 }
 
-.code .token.operator,
-.code .token.entity,
-.code .token.url,
-.code .token.variable {
-    color: #f8f8f2;
-}
 
-.code .token.atrule,
-.code .token.attr-value,
-.code .token.function,
-.code .token.class-name {
-    color: #a6e22e;
-}
+/* Level 3 — internal structure */
 
-.code .token.keyword {
-    color: #f92672;
-}
-
-.code .token.regex,
-.code .token.important {
-    color: #fd971f;
+body.boxes-mode .site-identity,
+body.boxes-mode .site-contact,
+body.boxes-mode .top-navigation,
+body.boxes-mode .page,
+/*body.boxes-mode .page-header,*/
+/*body.boxes-mode .page-sections,*/
+/*body.boxes-mode .section */
+{
+    outline: 2px solid gray;
+    padding: 0.75rem;
 }

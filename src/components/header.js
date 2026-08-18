@@ -32,30 +32,32 @@ export function renderHeader(website) {
         return renderError("Header requires a title.");
     }
 
-    const subtitleHtml = header.subtitle
-        ? `<p class="site-subtitle">${header.subtitle}</p>`
-        : "";
+    let subtitleHtml = "";
 
-    return `
-        <header class="site-header">
+    if (header.subtitle) {
+        subtitleHtml = `<p class="site-subtitle">
+                    ${header.subtitle}
+                </p>`;
+        }
 
+    const contactHtml = renderContact(header.contact);
+    const navigationHtml = renderNavigation(navigation);
+
+    const headerHtml = `${indent(8)}<header class="site-header">
             <div class="header-content">
-
                 <div class="site-identity">
-                    <h1 class="site-title">${header.title}</h1>
-                    ${subtitleHtml}
+                <h1 class="site-title">
+                    ${header.title}
+                </h1>
+                ${subtitleHtml}
                 </div>
-
-                ${renderContact(header.contact)}
-
-                ${renderNavigation(navigation)}
-
+                ${contactHtml}
+                ${navigationHtml}
             </div>
+        </header>`;
 
-        </header>
-    `;
+    return headerHtml;
 }
-
 
 /* =========================================================
    CONTACT FUNCTION
@@ -78,55 +80,50 @@ function renderContact(contact) {
         return renderError("Header requires a contact array.");
     }
 
-    const contactHtml = contact
-        .map(item => {
-            if (!item.id) {
-                return renderError("Contact item requires an id.");
-            }
+    let contactHtml = "";
 
-            if (!item.title) {
-                return renderError(
-                    `Contact item "${item.id}" requires a title.`
-                );
-            }
+    for (const item of contact) {
+        if (!item.id) {
+            return renderError("Contact item requires an id.");
+        }
 
-            if (!item.value) {
-                return renderError(
-                    `Contact item "${item.id}" requires a value.`
-                );
-            }
+        if (!item.title) {
+            return renderError(
+                `Contact item "${item.id}" requires a title.`
+            );
+        }
 
-            if (!item.href) {
-                return renderError(
-                    `Contact item "${item.id}" requires an href.`
-                );
-            }
+        if (!item.value) {
+            return renderError(
+                `Contact item "${item.id}" requires a value.`
+            );
+        }
 
-            return `
-                <div
-                    class="site-contact-item"
-                    data-contact="${createName(item.id)}"
-                >
-                    <span class="site-contact-title">
+        if (!item.href) {
+            return renderError(
+                `Contact item "${item.id}" requires an href.`
+            );
+        }
+
+        const contactItemHtml = `<div class="site-contact-item" data-contact="${createName(item.id)}">
+                        <span class="site-contact-title">
                         ${item.title}:
-                    </span>
-
-                    <a
-                        class="site-contact-value"
-                        href="${item.href}"
-                    >
+                        </span>
+                        <a class="site-contact-value" href="${item.href}">
                         ${item.value}
-                    </a>
-                </div>
-            `;
-        })
-        .join("");
+                        </a>
+                    </div>`;
 
-    return `
-        <div class="site-contact">
-            ${contactHtml}
-        </div>
-    `;
+        contactHtml += contactItemHtml + "\n" + indent(20);
+    }
+
+    contactHtml = contactHtml.trimEnd();
+
+    const siteContactHtml = `<div class="site-contact">
+                    ${contactHtml}
+                </div>`;
+
+    return siteContactHtml;
 }
 
 
@@ -153,24 +150,25 @@ function renderNavigation(navigation) {
         return renderError("Navigation requires a tabs array.");
     }
 
-    const tabsHtml = navigation.tabs
-        .map(tab => renderNavigationTab(
+    let tabsHtml = "";
+
+    for (const tab of navigation.tabs) {
+        const navigationTabHtml = renderNavigationTab(
             tab,
             navigation.activeTab
-        ))
-        .join("");
+        );
 
-    return `
-        <nav
-            class="top-navigation"
-            aria-label="primary navigation"
-        >
-            ${tabsHtml}
-        </nav>
-    `;
+        tabsHtml += navigationTabHtml + "\n" + indent(20);
+    }
+
+    tabsHtml = tabsHtml.trimEnd();
+
+    const navigationHtml = `<nav class="top-navigation" aria-label="primary navigation">
+                    ${tabsHtml}
+                </nav>`;
+
+    return navigationHtml;
 }
-
-
 /**
  * Renders one navigation tab.
  *
@@ -199,28 +197,29 @@ function renderNavigationTab(tab, activeTab) {
         ? `aria-current="page"`
         : "";
 
-    return `
-        <button
-            type="button"
-            class="top-navigation-tab"
-            data-navigation-tab="${createName(tab.id)}"
-            ${activeAttribute}
-        >
-            ${tab.title}
-        </button>
-    `;
+    const navigationTabHtml = `$<button type="button" class="top-navigation-tab" data-navigation-tab="${createName(tab.id)}" ${activeAttribute}>
+                    ${tab.title}
+                    </button>`;
+
+    return navigationTabHtml;
 }
 
-export function initializeNavigation(site, renderApp) {
 
+/* =========================================================
+   NAVIGATION INITIALIZATION
+   ========================================================= */
+
+
+/**
+ * Attaches click listeners to top navigation tabs.
+ */
+export function initializeNavigation(site, renderApp) {
     const navigationTabs = document.querySelectorAll(
         ".top-navigation-tab"
     );
 
     navigationTabs.forEach(tab => {
-
         tab.addEventListener("click", () => {
-
             const tabId = tab.dataset.navigationTab;
 
             site.navigation.activeTab = tabId;
@@ -228,7 +227,6 @@ export function initializeNavigation(site, renderApp) {
 
             renderApp();
         });
-
     });
 }
 
@@ -242,15 +240,12 @@ export function initializeNavigation(site, renderApp) {
  * Displays a visible header error.
  */
 function renderError(message) {
-    return `
-        <div
-            class="header-error"
-            role="alert"
-        >
-            <strong>Header error:</strong>
-            ${message}
-        </div>
-    `;
+    return `<div class="header-error" role="alert">
+    <strong>
+        Header error:
+    </strong>
+    ${message}
+</div>`;
 }
 
 
@@ -263,4 +258,22 @@ function createName(value) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
+}
+
+// HTML fragment
+// → split into individual lines
+// → add spaces to the front of every line
+// → join the lines back together
+
+function indentHtml(html, spaces) {
+    const indentation = " ".repeat(spaces);
+
+    return html
+        .split("\n")
+        .map(line => indentation + line)
+        .join("\n");
+}
+
+export function indent(spaces) {
+    return " ".repeat(spaces);
 }

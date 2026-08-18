@@ -2,7 +2,7 @@ import { renderHeader } from "../components/header.js";
 import { renderContent } from "../components/content.js";
 import { renderLeftSidebar } from "../components/leftSidebar.js";
 import { renderRightSidebar } from "../components/rightSidebar.js";
-
+import { indent } from "../components/header.js";
 
 /**
  * Renders the complete home view.
@@ -64,21 +64,19 @@ export function renderHome(website) {
         sections: activePage.sections
     };
 
-    return `
-        <div class="site-shell">
+    const headerHtml = renderHeader(website);
+    const leftSidebarHtml = renderLeftSidebar(leftSidebar);
+    const contentHtml = renderContent(activePage);
+    const rightSidebarHtml = renderRightSidebar(rightSidebar);
 
-            ${renderHeader(website)}
+    const homeHtml = `\n${indent(4)}<div class="site-shell">
+${headerHtml}
+${indent(8)}<div class="page-layout">
+${leftSidebarHtml}
+${contentHtml}
+${rightSidebarHtml}
+${indent(8)}</div>
+${indent(4)}</div>\n`;
 
-            <div class="page-layout">
-
-                ${renderLeftSidebar(leftSidebar)}
-
-                ${renderContent(activePage)}
-
-                ${renderRightSidebar(rightSidebar)}
-
-            </div>
-
-        </div>
-    `;
+    return homeHtml;
 }

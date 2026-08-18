@@ -27,26 +27,30 @@ export function renderRightSidebar(sidebar) {
         );
     }
 
-    const itemsHtml = sidebar.items
-        .map(item => renderNavigationItem(item))
-        .join("");
+    let itemsHtml = "";
 
-    return `
-        <aside class="right-sidebar">
-            <header class="right-sidebar-header">
-                <h2>${sidebar.title}</h2>
-            </header>
+    for (const item of sidebar.items) {
+        const navigationItemHtml = renderNavigationItem(item);
 
-            <nav
-                class="right-navigation"
-                aria-label="${sidebar.title}"
-            >
-                ${itemsHtml}
-            </nav>
-        </aside>
-    `;
+        itemsHtml += navigationItemHtml + "\n" + indent(20);
+    }
+
+    itemsHtml = itemsHtml.trimEnd();
+
+    const rightSidebarHtml = `${indent(12)}<aside class="right-sidebar">
+                <header class="right-sidebar-header">
+                    <h2>${sidebar.title}</h2>
+                </header>
+                <nav
+                    class="right-navigation"
+                    aria-label="${sidebar.title}"
+                >
+                    ${itemsHtml}
+                </nav>
+            </aside>`;
+
+    return rightSidebarHtml;
 }
-
 
 /**
  * Renders one right-sidebar navigation button.
@@ -81,16 +85,16 @@ function renderNavigationItem(item) {
         ? `aria-current="page"`
         : "";
 
-    return `
-        <button
-            type="button"
-            class="right-navigation-item"
-            data-navigation-item="${createName(item.id)}"
-            ${selectedAttribute}
-        >
-            ${item.title}
-        </button>
-    `;
+    const navigationItemHtml = `<button
+                        type="button"
+                        class="right-navigation-item"
+                        data-navigation-item="${createName(item.id)}"
+                        ${selectedAttribute}
+                    >
+                    ${item.title}
+                    </button>`;
+
+    return navigationItemHtml;
 }
 
 export function initializePageNavigation(site, renderApp) {
@@ -151,4 +155,8 @@ function createName(value) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
+}
+
+export function indent(spaces) {
+    return " ".repeat(spaces);
 }
