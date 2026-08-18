@@ -140,7 +140,7 @@ body {
     /* padding: */
 
     /* Appearance */
-     background-color: lightblue; 
+     background-color: ; 
     /* color: */
 
     /* Positioning */
@@ -746,11 +746,21 @@ body.boxes-mode .right-sidebar {
 body.boxes-mode .site-identity,
 body.boxes-mode .site-contact,
 body.boxes-mode .top-navigation,
-body.boxes-mode .page,
-/*body.boxes-mode .page-header,*/
-/*body.boxes-mode .page-sections,*/
-/*body.boxes-mode .section */
+body.boxes-mode .page-header,
+body.boxes-mode .page-sections,
+body.boxes-mode .section 
 {
     outline: 2px solid gray;
     padding: 0.75rem;
+}
+
+/* Page */
+
+body.boxes-mode .page {
+    width: auto;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    outline: 2px solid gray;
+    padding: 1rem;
 }

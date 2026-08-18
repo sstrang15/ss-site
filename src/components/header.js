@@ -197,7 +197,7 @@ function renderNavigationTab(tab, activeTab) {
         ? `aria-current="page"`
         : "";
 
-    const navigationTabHtml = `$<button type="button" class="top-navigation-tab" data-navigation-tab="${createName(tab.id)}" ${activeAttribute}>
+    const navigationTabHtml = `<button type="button" class="top-navigation-tab" data-navigation-tab="${createName(tab.id)}" ${activeAttribute}>
                     ${tab.title}
                     </button>`;
 
